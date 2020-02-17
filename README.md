@@ -259,19 +259,12 @@ Contnet-Location:/timeline/v1.0/feed/1
 * Method는 GET, POST, PUT, DELETE 허용 이기에 verbose를 path에 기술할 필요는 없으나 모니터링도구, 로그운영 식별의 편의를 고려하여 path에 Update, Delete 에관한 힌트 허용.    
 ~~~
 POST http://api.onstove.com/timeline/v1.0/create/feed
-
 GET http://api.onstove.com/timeline/v1.0/read/feed/1
-
 PUT http://api.onstove.com/timeline/v1.0/update/feed/1
-
 DELETE http://api.onstove.com/timeline/v1.0/delete/feed/1
-
 POST http://api.onstove.com/timeline/v1.0/like/reply/1
-
 POST http://api.onstove.com/timeline/v1.0/claim/reply/1
-
 GET http://api.onstove.com/timeline/v1.0/search/feed?q=
-
 GET http://api.onstove.com/timeline/v1.0/list/feed?sort=
 ~~~
 
@@ -280,7 +273,6 @@ GET http://api.onstove.com/timeline/v1.0/list/feed?sort=
 ~~~
 다양한 조건을 path에 넣을 필요는 없다. 쿼리스트링을 활용하자. 요즘은 GET에도 request body 활용.
 GET http://api.onstove.com/timeline/v1.0/list/feeds?page=&size=&sort=
-
 GET http://api.onstove.com/timeline/v1.0/search/feeds?q=&fields=title,content&sort=
 ~~~
 
