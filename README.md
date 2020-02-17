@@ -249,7 +249,7 @@ http://api.onstove.com/timeline/v1.0/feed-commnets
 `
 http://api.onstove.com/timeline/v1.0/feed/duplicate
 `
-* POST 요청에의해 신규로 생성된 리소스의 고유식별값은 Content-Location Header를 통해 응답한다.
+* POST 요청에의해 신규로 생성된 리소스의 고유식별값은 Content-Location Header를 통해 응답한다.  
 ~~~
 POST /timeline/v1.0/feed
 {
@@ -258,9 +258,9 @@ POST /timeline/v1.0/feed
 
 response header
 Contnet-Location:/timeline/v1.0/feed/1
-~~~
+~~~  
 
-* `Method는 GET, POST, PUT, DELETE 허용`이기에 verbose를 path에 기술할 필요는 없으나 모니터링도구, 로그운영 식별의 편의를 고려하여 path에 Update, Delete 에관한 힌트 허용.
+* `Method는 GET, POST, PUT, DELETE 허용`이기에 verbose를 path에 기술할 필요는 없으나 모니터링도구, 로그운영 식별의 편의를 고려하여 path에 Update, Delete 에관한 힌트 허용.    
 ~~~
 POST http://api.onstove.com/timeline/v1.0/create/feed
 
@@ -277,15 +277,17 @@ POST http://api.onstove.com/timeline/v1.0/claim/reply/1
 GET http://api.onstove.com/timeline/v1.0/search/feed?q=
 
 GET http://api.onstove.com/timeline/v1.0/list/feed?sort=
-~~~
+~~~  
 
-* URI에 불필요한 path를 추가하지 말자 - 3 depth 이내. /{value1}/{value2}/{value3} 형식은 지양. /key1/{value1}/key2/{value2}/key3/{value3}
+
+* URI에 불필요한 path를 추가하지 말자 - 3 depth 이내. /{value1}/{value2}/{value3} 형식은 지양. /key1/{value1}/key2/{value2}/key3/{value3}  
 ~~~
 다양한 조건을 path에 넣을 필요는 없다. 쿼리스트링을 활용하자. 요즘은 GET에도 request body 활용.
 GET http://api.onstove.com/timeline/v1.0/list/feeds?page=&size=&sort=
 
 GET http://api.onstove.com/timeline/v1.0/search/feeds?q=&fields=title,content&sort=
-~~~
+~~~  
+
 
 * Sort
 
