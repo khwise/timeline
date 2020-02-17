@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="DEBUG">
+    <Appenders>
+        <Console name="LogToConsole"
+                 direct="true"
+                 target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight{%-5level} [%yellow{%c{1.}.%method:%line}] %msg%n"/>
+        </Console>
+        <RollingFile name="LogToRollingFile"
+                     append="true"
+                     bufferSize="8192"
+                     fileName="/stove/logs/app-debug/app-debug.log"
+                     filePattern="/stove/logs/app-debug/app-debug-%d{yyyyMMdd}.log.gz">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss.S} %-5level [%c{1.}.%M:%L] %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+                <!--SizeBasedTriggeringPolicy size="100 MB"/-->
+            </Policies>
+            <DefaultRolloverStrategy max="30" />
+        </RollingFile>
+        <Async name="AsyncConsoleLogging"
+               bufferSize="512"
+               blocking="false"
+               includeLocation="true"
+               shutdownTimeout="150">
+            <AppenderRef ref="LogToConsole"/>
+        </Async>
+        <Async name="AsyncFileLogging"
+               bufferSize="32768"
+               blocking="false"
+               includeLocation="true"
+               shutdownTimeout="800">
+            <AppenderRef ref="LogToRollingFile"/>
+        </Async>
+    </Appenders>
+    <Loggers>
+        <!-- avoid duplicated logs with additivity=false -->
+        <Logger name="com.smilegate" level="DEBUG">
+            <AppenderRef ref="AsyncConsoleLogging"/>
+        </Logger>
+        <Root level="DEBUG" >
+            <AppenderRef ref="AsyncFileLogging"/>
+        </Root>
+    </Loggers>
+</Configuration>

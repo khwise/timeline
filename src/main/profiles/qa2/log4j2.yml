@@ -1,0 +1,64 @@
+Configuration:
+  appenders:
+    Console:
+      name: console
+      PatternLayout:
+        pattern: "[%d{yyyy-MM-dd HH:mm:ss} - %p - %c{1.}.%M:%L] - %m%n"
+    RollingFile:
+      -
+        name: monitoringLog
+        fileName: /stove/logs/app-debug/app-debug.log
+        filepattern: "/stove/logs/app-debug/app-debug-%d{yyyy-MM-dd}.log"
+        PatternLayout:
+          pattern: "%d{HH:mm:ss.S} %p  %c{1.}.%M:%L - %m%n"
+        Policies:
+          TimeBasedTriggeringPolicy:
+            interval: 1
+            modulate: true
+      -
+        name: errorLog
+        fileName: /services/log/tomcat/error.log
+        FilePattern: "/services/log/tomcat/error-%d{yyyy-MM-dd}.log"
+        PatternLayout:
+          pattern: "%d{HH:mm:ss.S} %p  %c{1.}.%M:%L - %m%n"
+        Policies:
+          TimeBasedTriggeringPolicy:
+            interval: 1
+            modulate: true
+
+  Loggers:
+    logger:
+      -
+        name: com.smilegate
+        level: info
+        AppenderRef:
+          ref: monitoringLog
+      -
+        name: org.springframework
+        level: info
+        AppenderRef:
+          ref: monitoringLog
+      -
+        name: org.springframework.cache
+        level: trace
+        AppenderRef:
+          ref: monitoringLog
+
+      ## Logger 추가 ##
+      -
+        name: monitoringLogger
+        level: info
+        additivity: false
+        AppenderRef:
+          ref: monitoringLog
+      -
+        name: errorLogger
+        level: error
+        additivity: false
+        AppenderRef:
+          ref: errorLog
+
+    Root:
+      level: warn
+      AppenderRef:
+        ref: console

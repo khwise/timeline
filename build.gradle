@@ -1,0 +1,113 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.4.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+	id 'war'
+	// querydsl 지원 gradle plugin -  https://plugins.gradle.org/plugin/com.ewerk.gradle.plugins.querydsl
+	id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
+}
+
+group = 'com.smilegate'
+version = '1.0.0-RELEASE'
+sourceCompatibility = '1.8'
+
+
+// 스마게 인프라는 톰캣 WAS에 war 파일을 배포하므로 실행가능하게 패키징을 필요로 하지 않으니 bootWar 비활성화.
+// https://docs.spring.io/spring-boot/docs/current/gradle-plugin/reference/html/#packaging-executable-and-normal 
+// https://java.ihoney.pe.kr/514
+bootWar.enabled = false
+war.enabled = true
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+
+configurations {
+	// 임베디드 톰캣 비활성화
+	// compile.exclude module: 'spring-boot-starter-tomcat'
+	// log4j2 를 사용하기위해 logback 비활성화
+	compile.exclude module: 'spring-boot-starter-logging'
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-log4j2'
+	implementation 'org.springframework.kafka:spring-kafka'
+
+	//jasypt
+	implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.2'
+
+	//querydsl
+	implementation 'com.querydsl:querydsl-jpa'
+	implementation 'com.querydsl:querydsl-apt'
+	implementation 'com.querydsl:querydsl-mongodb'
+
+	compileOnly 'org.projectlombok:lombok'
+
+	runtimeOnly 'com.h2database:h2'
+	runtimeOnly 'mysql:mysql-connector-java'
+	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	// 외부 톰캣 이용 - 내장 톰캣 이용하지 않음.
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
+	testImplementation 'org.springframework.kafka:spring-kafka-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+	implementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+
+def querydslSrcDir = 'src/main/generated'
+// https://www.jhipster.tech/tips/003_tip_add_querydsl_support.html
+querydsl {
+	library = "com.querydsl:querydsl-apt"
+	jpa = true
+	springDataMongo = true
+	querydslSourcesDir = querydslSrcDir
+}
+compileQuerydsl{
+	options.annotationProcessorPath = configurations.querydsl
+}
+configurations {
+	querydsl.extendsFrom compileClasspath
+}
+
+
+ext.profile = (!project.hasProperty('profile') || !profile) ? 'local' : profile
+
+sourceSets {
+	main {
+		// 자바소스와 QClass 소스가 함께 컴파일되도록 설정
+		java {
+			srcDirs = ['src/main/java', querydslSrcDir]
+		}
+		// build 프로파일
+		resources {
+			srcDirs = ["src/main/resources", "src/main/profiles/${profile}"]
+		}
+	}
+}
+
+
+test {
+	useJUnitPlatform()
+}
