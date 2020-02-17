@@ -84,17 +84,17 @@
   ex) spring-mvc, quartz, jersey
 
 #### #Configuration
-* 나머지를 동작케 하는 모든 지저분한 상세는 여기 존재.
-  ex) web server setup, initialize datasource
-* 나머지 모두를 엮음(wires)
-* framework를 격리하고 감춤.
-  ex) spring은 이 영역에만 존재 함.
+* 나머지를 동작케 하는 모든 지저분한 상세는 여기 존재.  
+  ex) web server setup, initialize datasource  
+* 나머지 모두를 엮음(wires)  
+* framework를 격리하고 감춤.  
+  ex) spring은 이 영역에만 존재 함.  
 
 ## CQRS 패턴 고려
-도메인(업무분석)의 복잡도 증가의 큰 원인 중 하나를 동일한 도메인으로 조회,변경 업무를 처리하기 때문이라는 분석에서 출발.
-<-- CQRS는 단일 모델 사용에따른 복잡도 해소를 위한 디자인 패턴.
-<-- 클린 아키텍처, CQRS 패턴 모두 도메인을 중심으로 다루기때문에 두 컨셉을 혼합하는데는 아무런 문제가 없음.
-<-- command, query를 명시적 구분하지 않더라도 명령용 도메인과 질의용 도메인 객체를 분리하는것만으로도 소기의 목적은 달성 가능할것으로 보임.
+도메인(업무분석)의 복잡도 증가의 큰 원인 중 하나를 동일한 도메인으로 조회,변경 업무를 처리하기 때문이라는 분석에서 출발.  
+<-- CQRS는 단일 모델 사용에따른 복잡도 해소를 위한 디자인 패턴.  
+<-- 클린 아키텍처, CQRS 패턴 모두 도메인을 중심으로 다루기때문에 두 컨셉을 혼합하는데는 아무런 문제가 없음.  
+<-- command, query를 명시적 구분하지 않더라도 명령용 도메인과 질의용 도메인 객체를 분리하는것만으로도 소기의 목적은 달성 가능할것으로 보임.  
 
 
 ## modules & packages
@@ -263,14 +263,14 @@ Contnet-Location:/timeline/v1.0/feed/1
 
 * Method는 GET, POST, PUT, DELETE 허용 이기에 verbose를 path에 기술할 필요는 없으나 모니터링도구, 로그운영 식별의 편의를 고려하여 path에 Update, Delete 에관한 힌트 허용.    
 ~~~
-POST http://api.onstove.com/timeline/v1.0/create/feed
-GET http://api.onstove.com/timeline/v1.0/read/feed/1
-PUT http://api.onstove.com/timeline/v1.0/update/feed/1
-DELETE http://api.onstove.com/timeline/v1.0/delete/feed/1
-POST http://api.onstove.com/timeline/v1.0/like/reply/1
-POST http://api.onstove.com/timeline/v1.0/claim/reply/1
-GET http://api.onstove.com/timeline/v1.0/search/feed?q=
-GET http://api.onstove.com/timeline/v1.0/list/feed?sort=
+POST http://api.onstove.com/timeline/v1.0/create/feed  
+GET http://api.onstove.com/timeline/v1.0/read/feed/1  
+PUT http://api.onstove.com/timeline/v1.0/update/feed/1  
+DELETE http://api.onstove.com/timeline/v1.0/delete/feed/1  
+POST http://api.onstove.com/timeline/v1.0/like/reply/1  
+POST http://api.onstove.com/timeline/v1.0/claim/reply/1  
+GET http://api.onstove.com/timeline/v1.0/search/feed?q=  
+GET http://api.onstove.com/timeline/v1.0/list/feed?sort=  
 ~~~
 
 
@@ -300,18 +300,18 @@ entrypoint, domain, dataprovider 경계 간 객체 매핑 방안
 * https://www.baeldung.com/java-performance-mapping-frameworks
 
 ## References
-the clean architecture
-https://crosp.net/blog/software-architecture/clean-architecture-part-1-databse-vs-domain/
-https://crosp.net/blog/software-architecture/clean-architecture-part-2-the-clean-architecture/
-https://blog.cleancoder.com/uncle-bob/2011/11/22/Clean-Architecture.html
-use case
-https://proandroiddev.com/why-you-need-use-cases-interactors-142e8a6fe576
-Package by feature, not layer
-http://www.javapractices.com/topic/TopicAction.do?Id=205
-유스케이스(Use-cases) 개념
-https://gisulsa.tistory.com/234
-유스케이스 모델링 과정
-https://gisulsa.tistory.com/235?category=95571
+**the clean architecture**  
+https://crosp.net/blog/software-architecture/clean-architecture-part-1-databse-vs-domain/  
+https://crosp.net/blog/software-architecture/clean-architecture-part-2-the-clean-architecture/  
+https://blog.cleancoder.com/uncle-bob/2011/11/22/Clean-Architecture.html  
+**use case**  
+https://proandroiddev.com/why-you-need-use-cases-interactors-142e8a6fe576  
+**Package by feature, not layer**  
+http://www.javapractices.com/topic/TopicAction.do?Id=205  
+**유스케이스(Use-cases) 개념**  
+https://gisulsa.tistory.com/234  
+**유스케이스 모델링 과정**  
+https://gisulsa.tistory.com/235?category=95571  
 
 
 
