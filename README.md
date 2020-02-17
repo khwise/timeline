@@ -273,7 +273,7 @@ POST http://api.onstove.com/timeline/v1.0/claim/reply/1
 GET http://api.onstove.com/timeline/v1.0/search/feed?q=
 
 GET http://api.onstove.com/timeline/v1.0/list/feed?sort=
-~~~  
+~~~
 
 
 * URI에 불필요한 path를 추가하지 말자 - 3 depth 이내. /{value1}/{value2}/{value3} 형식은 지양. /key1/{value1}/key2/{value2}/key3/{value3}  
@@ -282,7 +282,7 @@ GET http://api.onstove.com/timeline/v1.0/list/feed?sort=
 GET http://api.onstove.com/timeline/v1.0/list/feeds?page=&size=&sort=
 
 GET http://api.onstove.com/timeline/v1.0/search/feeds?q=&fields=title,content&sort=
-~~~  
+~~~
 
 
 * Sort
