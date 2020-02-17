@@ -251,16 +251,12 @@ http://api.onstove.com/timeline/v1.0/feed/duplicate
 `
 * POST 요청에의해 신규로 생성된 리소스의 고유식별값은 Content-Location Header를 통해 응답한다.  
 ~~~
-POST /timeline/v1.0/feed
-{
-  "title":"안녕"
-}
-
 response header
 Contnet-Location:/timeline/v1.0/feed/1
-~~~  
+~~~
 
-* `Method는 GET, POST, PUT, DELETE 허용`이기에 verbose를 path에 기술할 필요는 없으나 모니터링도구, 로그운영 식별의 편의를 고려하여 path에 Update, Delete 에관한 힌트 허용.    
+
+* Method는 GET, POST, PUT, DELETE 허용 이기에 verbose를 path에 기술할 필요는 없으나 모니터링도구, 로그운영 식별의 편의를 고려하여 path에 Update, Delete 에관한 힌트 허용.    
 ~~~
 POST http://api.onstove.com/timeline/v1.0/create/feed
 
