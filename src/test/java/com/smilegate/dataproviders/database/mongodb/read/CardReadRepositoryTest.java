@@ -47,7 +47,7 @@ public class CardReadRepositoryTest {
 
         Optional<Card> findedCard = cardReadRepository.findById(saved.getId());
 
-        assertEquals("동일 카드?" , saved, findedCard.orElse(null) );
+        assertEquals("동일 카드?" , saved.getCardNo(), findedCard.orElse(null).getCardNo() );
 
         System.out.println(saved.getId());
 
