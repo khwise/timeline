@@ -14,6 +14,10 @@
 * Kafka 2.X
 * use case, domain, entity, vo, dto 정의와 차이를 구체적으로 이해.
 
+
+## 소스 얻기
+`$ git clone http://stove-gitlab.sginfra.net/service_engine/Gotham.git`
+
 ## Developer Settings
 소스를 포함한 모든 text file 인코딩은 UTF-8으로 설정.
 > 예외로 .properties 파일은 IOS-8859-1 임.
@@ -21,8 +25,7 @@
 ![IntelliJ Setting](./document/intellij-file-encoding.png)
 
 ## Build
-
-## Start up
+`$ gradle clean war --debug -Pprofile=local`
 
 
 
@@ -215,18 +218,20 @@ dataproviders/        도메인 모듈의 Dataprovider interface를 구현
 * 비지니스로직에 관심을 가져야만 함.
 
 
-## 프로젝트 구성
-#### 프로퍼티 값 암호화
+## 프로젝트 구성  
 
-#### QueryDSL
+#### 프로퍼티 값 암호화  
 
-#### Circit Breaker
+#### QueryDSL  
 
-#### XSS 처리
+#### Circuit Breaker  
 
-#### 객체 매핑
+#### XSS 처리  
 
-#### 환경별 profiles
+#### 객체 매핑  
+
+#### 환경별 profiles  
+
 
 ## REST API 작성 가이드
 * Content-Type은 application/json
