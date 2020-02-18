@@ -15,9 +15,12 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 //@EnableMongoAuditing
 @PropertySource("classpath:application.properties")
-@EnableMongoRepositories(value = {
+@EnableMongoRepositories(
+        basePackages = {
         "com.smilegate.dataproviders.database.mongodb.read"
-})
+        },
+        mongoTemplateRef = "mongoReadTemplate"
+)
 public class MongoDBSlaveConfig extends AbstractMongoClientConfiguration {
     @Value("${config.mongo.dbname}")
     private String dbName;
@@ -98,8 +101,8 @@ public class MongoDBSlaveConfig extends AbstractMongoClientConfiguration {
     }
 
 
-    @Bean(name = "mongoTemplate4Read")
-    public MongoTemplate mongoTemplate4Read(){
+    @Bean(name = "mongoReadTemplate")
+    public MongoTemplate mongoReadTemplate(){
         return new MongoTemplate(mongoClient(),getDatabaseName());
     }
 }

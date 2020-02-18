@@ -16,9 +16,12 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 @EnableMongoAuditing
 @PropertySource("classpath:application.properties")
-@EnableMongoRepositories(value = {
+@EnableMongoRepositories(
+        basePackages = {
         "com.smilegate.dataproviders.database.mongodb.write"
-})
+        },
+        mongoTemplateRef = "mongoWriteTemplate"
+)
 public class MongoDBMasterConfig extends AbstractMongoClientConfiguration {
     @Value("${config.mongo.dbname}")
     private String dbName;
@@ -98,8 +101,8 @@ public class MongoDBMasterConfig extends AbstractMongoClientConfiguration {
     }
 
     @Primary
-    @Bean(name = "mongoTemplate4Write")
-    public MongoTemplate mongoTemplate4Write(){
+    @Bean(name = "mongoWriteTemplate")
+    public MongoTemplate mongoWriteTemplate(){
         return new MongoTemplate(mongoClient(),getDatabaseName());
     }
 }
