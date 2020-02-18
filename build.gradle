@@ -36,8 +36,20 @@ configurations {
 	compile.exclude module: 'spring-boot-starter-logging'
 }
 
+def elasticsearchVersion = '7.3.2'
+
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
+	implementation ('org.springframework.boot:spring-boot-starter-data-elasticsearch'){
+		//spring-boot-starter-data-elasticsearch는 es 6.8이므로 exclude 후 특정버전 적용.
+		exclude group: 'org.elasticsearch'
+		exclude group: 'org.elasticsearch.plugin'
+		exclude group: 'org.elasticsearch.client'
+	}
+	//elasticsearch version 명시
+	implementation "org.elasticsearch:elasticsearch:${elasticsearchVersion}"
+	implementation "org.elasticsearch.client:elasticsearch-rest-high-level-client:${elasticsearchVersion}"
+	implementation "org.elasticsearch.client:elasticsearch-rest-client:${elasticsearchVersion}"
+
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'

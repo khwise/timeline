@@ -3,6 +3,7 @@ package com.smilegate.configurations;
 import com.ulisesbocchio.jasyptspringboot.annotation.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -18,7 +19,9 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 		exclude = {
 				MongoDataAutoConfiguration.class,
 				DataSourceAutoConfiguration.class,
-				DataSourceTransactionManagerAutoConfiguration.class
+				DataSourceTransactionManagerAutoConfiguration.class,
+				// elasticsearch auto configuration 끔
+				ElasticsearchAutoConfiguration.class
 		}
 )
 @EntityScan(
