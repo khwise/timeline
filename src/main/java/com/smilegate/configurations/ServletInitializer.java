@@ -1,9 +1,7 @@
 package com.smilegate.configurations;
 
-import com.smilegate.configurations.spring.*;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
@@ -25,7 +23,6 @@ public class ServletInitializer extends SpringBootServletInitializer {
 
 	@Override
 	public void onStartup(ServletContext container) throws ServletException {
-
 		//ROOT 콘텍스트
 		AnnotationConfigWebApplicationContext rootContext
 				= new AnnotationConfigWebApplicationContext();
