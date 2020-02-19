@@ -42,6 +42,7 @@
         </Logger>
         <Root level="DEBUG" >
             <AppenderRef ref="AsyncFileLogging"/>
+            <AppenderRef ref="AsyncConsoleLogging"/>
         </Root>
     </Loggers>
 </Configuration>

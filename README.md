@@ -232,6 +232,8 @@ dataproviders/        도메인 모듈의 Dataprovider interface를 구현
 
 #### 환경별 profiles  
 
+#### 어플리케이션 내부 비동기 통신  
+
 
 ## REST API 작성 가이드
 * Content-Type은 application/json

@@ -73,6 +73,7 @@ dependencies {
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+	annotationProcessor 'com.querydsl:querydsl-apt'
 	annotationProcessor 'org.projectlombok:lombok'
 
 	// 외부 톰캣 이용 - 내장 톰캣 이용하지 않음.
@@ -122,4 +123,10 @@ sourceSets {
 
 test {
 	useJUnitPlatform()
+}
+
+// 빌드한 war 파일을 build/target 아래 extract
+task unpackWar(type: Copy) {
+	from zipTree("build/libs/${rootProject.name}-${version}.war")
+	into "$buildDir/target"
 }

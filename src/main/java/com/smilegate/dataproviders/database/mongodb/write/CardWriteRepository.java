@@ -1,6 +1,5 @@
 package com.smilegate.dataproviders.database.mongodb.write;
 
-
 import com.smilegate.dataproviders.database.mongodb.Card;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
